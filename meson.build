@@ -1,0 +1,51 @@
+project('OfMeson', 'cpp','c',
+  version : '0.1',
+  default_options : ['warning_level=3', 'cpp_std=c++17'])
+
+of_path = get_option('OFPath')
+message(of_path)
+message(join_paths(of_path,'libs/openFrameworks'))
+includes = include_directories(
+                ['./src',
+                '/usr/include',
+                '/usr/local/include',
+                '/usr/include/c++/',
+                '/usr/include/c++/7/backward',
+                '/usr/lib/gcc/x86_64-linux-gnu/7/include',
+                '/usr/lib/x86_64-linux-gnu/glib-2.0/include',
+                '/usr/lib/x86_64-linux-gnu/gstreamer-1.0/include',
+                '/usr/local/include',
+                '/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed',
+                '/usr/include/x86_64-linux-gnu',
+                join_paths(of_path,'libs/openFrameworks'),
+                join_paths(of_path,'addons/ofxGui/src'),
+                join_paths(of_path,'libs/openFrameworks/3d'),
+                join_paths(of_path,'libs/openFrameworks/app'),
+                join_paths(of_path,'libs/openFrameworks/communication'),
+                join_paths(of_path,'libs/openFrameworks/events'),
+                join_paths(of_path,'libs/openFrameworks/gl'),
+                join_paths(of_path,'libs/openFrameworks/graphics'),
+                join_paths(of_path,'libs/openFrameworks/math'),
+                join_paths(of_path,'libs/openFrameworks/sound'),
+                join_paths(of_path,'libs/openFrameworks/types'),
+                join_paths(of_path,'libs/openFrameworks/utils'),
+                join_paths(of_path,'libs/openFrameworks/video'),
+                join_paths(of_path,'libs/boost/include'),
+                join_paths(of_path,'libs/fmodex/include'),
+                join_paths(of_path,'libs/FreeImage/include'),
+                join_paths(of_path,'libs/freetype/include'),
+                join_paths(of_path,'libs/glm/include'),
+                join_paths(of_path,'libs/json/include'),
+                join_paths(of_path,'libs/pugixml/include'),
+                join_paths(of_path,'libs/tess2/include'),
+                join_paths(of_path,'libs/uriparser/include'),
+                join_paths(of_path,'libs/utf8/include'),
+                join_paths(of_path,'libs/kiss/include'),
+                '/usr/include/x86_64-linux-gnu/c++/7',
+                '/usr/include/pulse',
+                '/usr/include/cairo',
+                '/usr/include/gstreamer-1.0',
+                '/usr/include/glib-2.0',
+                ])
+
+subdir('src')
