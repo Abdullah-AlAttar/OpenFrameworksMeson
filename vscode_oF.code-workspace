@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "${workspaceRoot}/../../external/OF"
+		},
+		{
+			"path": "${workspaceRoot}/../../external/OF/addons"
+		}
+	],
+	"settings": {}
+}
