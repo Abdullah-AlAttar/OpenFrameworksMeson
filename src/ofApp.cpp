@@ -12,7 +12,8 @@ void ofApp::setup(){
     this->gui_manager.gui.add(gui_manager.countX.setup( "countX", 50, 0, 200 ) );
     this->gui_manager.gui.add(gui_manager.stepX.setup( "stepX", 20, 0, 200 ) );
     this->gui_manager.gui.add(gui_manager.twistX.setup( "twistX", 5, -45, 45 ) );
-    this->gui_manager.gui.loadFromFile( "settings.xml" );
+    // this->gui_manager.gui.loadFromFile( "settings.xml" );
+    
 
 }
 
@@ -39,7 +40,7 @@ void ofApp::stripePattern() {
     ofPushMatrix();
     ofTranslate(i * gui_manager.stepX, 0);
     ofRotateDeg(i * gui_manager.twistX);
-    ofScale(6, 6);
+    ofScale(4, 4);
     ofDrawTriangle(0, 0, -50, 100, 50, 100);
     ofPopMatrix();
   }
@@ -47,7 +48,8 @@ void ofApp::stripePattern() {
 void ofApp::exit() { this->gui_manager.gui.saveToFile("settings.xml"); }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
+void ofApp::keyPressed(int key)
+{
 
 }
 

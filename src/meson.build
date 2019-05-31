@@ -67,31 +67,15 @@ deps_names = ['gstapp-1.0',
         'hogweed',
         'nettle',
         'gmp',
-        'com_err',
-        'krb5support',
-        'r',
-        'sasl2',
-        'gssapi',
         'Xfixes',
         'Xau',
         'Xdmcp',
-        'jpegxr',
-        'lcms2',
         'gomp',
         'lzma',
         'jbig',
-        'IlmThread-2_2',
+        'IlmThread',
         'p11-kit',
         'tasn1',
-        'keyutils',
-        'heimntlm',
-        'krb5',
-        'asn1',
-        'hcrypto',
-        'roken',
-        'wind',
-        'heimbase',
-        'hx509',
         'sqlite3',
         'crypt']
 cmplr = meson.get_compiler('cpp')
@@ -99,7 +83,7 @@ deps = []
 foreach dep_name : deps_names
   tmp = dependency(dep_name ,required : false)
   if(not tmp.found())
-    tmp = cmplr.find_library(dep_name, required : false)
+    tmp = cmplr.find_library(dep_name)
   endif
   if(tmp.found())
     deps += tmp
@@ -110,9 +94,13 @@ deps += cmplr.find_library('libopenFrameworks', dirs : join_paths(of_path, 'libs
 deps += cmplr.find_library('tess2', dirs : join_paths(of_path, 'libs/tess2/lib/linux64'))
 deps += cmplr.find_library('kiss', dirs : join_paths(of_path, 'libs/kiss/lib/linux64'))
 
-ofx_gui_path = join_paths(of_path,'addons','ofxGui', 'src')
 
-ofxGuiSources = [ join_paths(ofx_gui_path, 'ofxBaseGui.cpp'),
+sources = ['ofApp.cpp']
+if get_option('ofxGui')
+
+  ofx_gui_path = join_paths(of_path,'addons','ofxGui', 'src')
+
+  sources += [ join_paths(ofx_gui_path, 'ofxBaseGui.cpp'),
                   join_paths(ofx_gui_path, 'ofxButton.cpp'),
                   join_paths(ofx_gui_path, 'ofxColorPicker.cpp'),
                   join_paths(ofx_gui_path, 'ofxGuiGroup.cpp'),
@@ -122,10 +110,10 @@ ofxGuiSources = [ join_paths(ofx_gui_path, 'ofxBaseGui.cpp'),
                   join_paths(ofx_gui_path, 'ofxSlider.cpp'),
                   join_paths(ofx_gui_path, 'ofxSliderGroup.cpp'),
                   join_paths(ofx_gui_path, 'ofxToggle.cpp')]
-
+endif
 
 shlib = static_library('ofmeson',
-  sources :['ofApp.cpp',ofxGuiSources],
+  sources : sources,
   install : true,
   include_directories : includes,
   dependencies : deps,

@@ -1,1 +1,2 @@
 option('OFPath', type : 'string', description : 'OpenFrameworks path')
+option('ofxGui', type : 'boolean', description : 'Build gui addaon')
